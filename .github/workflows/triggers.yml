@@ -1,0 +1,29 @@
+name: Triggers workflow
+run-name: Learning how to use different triggers
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+      - 'releases/**'
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 8,20 28 * 4'
+  issues:
+    types: [opened, closed]
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Define var
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: 16.18.1
+      - name: Run JS script
+        run: node console.js
