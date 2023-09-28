@@ -1,4 +1,4 @@
-name: GitHub Actions course
+name: GitHub Actions course workflow
 on: [push]
 jobs:
   hello-world:
