@@ -60,8 +60,8 @@ jobs:
       - name: Verificar contenido del nuevo workflow
         run: ./.github/script/check-file.sh
         env:
-          FILE: ".github/workflows/contextos.yml"
-          SEARCH: "name:"
+          FILE: '.github/workflows/contexts.yml'
+          SEARCH: 'name:'
 
       # Update README to close <details id=4> and open <details id=5>
       # and set STEP to '5'
