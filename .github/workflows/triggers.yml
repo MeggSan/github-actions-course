@@ -1,5 +1,18 @@
-name: GitHub Actions course workflow
-on: [push]
+name: Triggers workflow
+run-name: Learning how to use different triggers
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+      - 'releases/**'
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 8,20 28 * 4'
+  issues:
+    types: [opened, closed]
 jobs:
   hello-world:
     runs-on: ubuntu-latest

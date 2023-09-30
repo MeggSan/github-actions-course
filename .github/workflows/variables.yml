@@ -1,0 +1,15 @@
+name: Variables
+run-name: I'm learning variables
+on: [push]
+env:
+  WEEK_DAY: Saturday
+  USERNAME: Meggie
+jobs:
+  variables:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo this is my username $USERNAME and is the day of the week $WEEK_DAY. My favorite color is ${{ vars.FAVORITE_COLOR }}
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo This is your secret password ${{ secrets.PASSWORD }}

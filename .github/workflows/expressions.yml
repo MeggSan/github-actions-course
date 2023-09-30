@@ -1,0 +1,46 @@
+name: Expressions
+run-name: I'm learning expressions
+on:
+  workflow_dispatch:
+    inputs:
+      favorite_color:
+        description: 'Favorite color'
+        required: true
+        type: string
+      second_favorite_color:
+        description: 'Second favorite color'
+        required: false
+        type: string
+      room_type:
+        description: 'Room type to paint it'
+        required: true
+        default: 'Living room'
+        type: choice
+        options:
+          - 'Living room'
+          - 'Kitchen room'
+          - 'Bedroom'
+          - 'Bathroom'
+          - 'Hall'
+      furniture:
+        description: 'Some furniture in the room'
+        required: false
+        type: boolean
+jobs:
+  paint_room_with_one_color:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run script
+        run: echo ${{ inputs.room_type }} was painted with the favorite color ${{ inputs.favorite_color }}
+  paint_room_with_second_color:
+    if: ${{ inputs.second_favorite_color != null }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run second script
+        run: echo ${{ inputs.room_type }} was painted with the second favorite color ${{ inputs.favorite_color }}
+  add_furniture:
+    if: ${{ inputs.furniture != null }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run third script
+        run: echo ${{ inputs.room_type }} have already some furniture and is not empty!

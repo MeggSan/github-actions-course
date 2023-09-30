@@ -1,0 +1,17 @@
+name: contexts
+run-name: I'm learning contexts
+on: [push, pull_request]
+jobs:
+  check-dev:
+    if: ${{ github.ref == 'refs/heads/dev' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Deploy at the branch $GITHUB_REF, with the actor ${{ github.actor }} and in the repository ${{ github.repository }}
+  check-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo this is the job status ${{ job.status }} and the job container ${{ job.container }}
+  check-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo this is the runner ${{ runner.name }} and the runner os ${{ runner.os }} with the arch ${{ runner.arch }}
